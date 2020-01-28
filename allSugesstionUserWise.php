@@ -26,7 +26,7 @@ $repo= new SuggestionRepo();
 				<br>
 				<h2> All Sugesstion User Wise</h2>
 				</div>
-				<table class="table table-bordered ">
+				<table class="table table-bordered text-center ">
 					<tr>
 						<th>UserName</th>
 						<th>Sugesstion</th>
@@ -39,6 +39,7 @@ $repo= new SuggestionRepo();
 					
 				<?php 
 						$countNumber=-1;
+						$a=0;
                          $result=$repo->alldata();
 
 						    while($row= mysqli_fetch_array($result)){
@@ -47,24 +48,27 @@ $repo= new SuggestionRepo();
                  ?>
 						<tr>	
 
-						<td><?php echo $row['username']?></td>				
+						<td style="color: red;"><?php echo $row['username']?></td>				
 						<td></td>
 						<td></td>
 						<td></td>
 							</tr>
-               <?php 
+               <?php  
 						
-						$countNumber=$row['login_id'];	}
+						$countNumber=$row['login_id'];
 						
-
+							}
+						
+						$a=$a+1;	
 								
  				 ?> 
 					   
 						<tr>
-						<td></td>
-						<td><?php echo $row['details']?> </td>
-						<td> <?php echo $row['sugesstion_type_id']?></td>
+						<td><?php echo $a ?></td>
+						<td class="text-left"><?php echo $row['details']?> </td>
+						<td> <?php echo $row['name']?></td>
 						<td> <?php echo $row['created_date']?> </td>
+						
 
 					</tr>
 
@@ -77,8 +81,8 @@ $repo= new SuggestionRepo();
      <br>
      <br>
      <h2>Count table</h2>
-     <div class="col-md-5 col-md-offset-2">
-				<table class="table table-bordered ">
+     <div class="col-md-5 col-md-offset-2" >
+				<table class="table table-bordered text-center ">
 					<tr>
 						
 						<th>Sugesstion type</th>
@@ -97,7 +101,7 @@ $repo= new SuggestionRepo();
 					   <?php
 					  
 					   ?>
-						<td> <?php echo $row['sugesstion_type_id']?></td>
+						<td> <?php echo $row['name']?></td>
 						<td> <?php echo $row['count(*)']?> </td>
 
 					</tr>

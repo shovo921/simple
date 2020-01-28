@@ -25,19 +25,23 @@ class SuggestionRepo{
      
 
          function all(){
-               $sql= "SELECT sugesstion_type_id,count(*) FROM suggestion group by sugesstion_type_id ";
-
-
-            return mysqli_query($this->con,$sql); 
+               $sql= "SELECT sugesstion_type.name, suggestion.sugesstion_type_id, count(*) FROM suggestion INNER JOIN sugesstion_type on suggestion.sugesstion_type_id=sugesstion_type.id group by suggestion.sugesstion_type_id";
+                    
+                    return mysqli_query($this->con,$sql); 
 
      }
        function alldata(){
-               $sql= "SELECT suggestion.id,suggestion.details, suggestion.created_date, suggestion.sugesstion_type_id,suggestion.login_id,login.id,login.username FROM suggestion INNER JOIN login  on login.id = suggestion.login_id ORDER BY login.username ASC";
+               $sql= "SELECT suggestion.id,suggestion.details, sugesstion_type.name,suggestion.created_date, suggestion.sugesstion_type_id,suggestion.login_id,login.id,login.username FROM((suggestion
+                INNER JOIN sugesstion_type on  suggestion.sugesstion_type_id = sugesstion_type.id)
+                INNER JOIN login on suggestion.login_id = login.id) ORDER BY login.username ASC";
 
 
-            return mysqli_query($this->con,$sql); 
+                 return mysqli_query($this->con,$sql); 
 
      }
+
+
+
 
      
 
